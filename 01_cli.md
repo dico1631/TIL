@@ -158,7 +158,56 @@ commit 000654421782e43cf3b096e24402bbea0fdfdd7c (HEAD -> master)
 Author: Min Jung <dicoqnfkrzl@naver.com> #누가
 Date:   Mon Dec 16 17:15:28 2019 +0900 #언제
 
-    first commit #무엇을
+    first commit #무엇을 추가했는지 알려줌
+
+```
+
+```shell
+#2번째 파일 git에 등록해보기
+
+#git 현 상태 확인
+student@M15035 MINGW64 ~/TIL (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        01_cli.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+#add
+student@M15035 MINGW64 ~/TIL (master)
+$ git add 01_cli.md
+
+#git 현 상태 확인
+student@M15035 MINGW64 ~/TIL (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   01_cli.md
+
+#commit
+student@M15035 MINGW64 ~/TIL (master)
+$ git commit -m "add 01_cli.md"
+[master 5d8db9c] add 01_cli.md
+ 1 file changed, 165 insertions(+)
+ create mode 100644 01_cli.md
+
+ #commit한 것 확인하기
+student@M15035 MINGW64 ~/TIL (master)
+$ git log
+commit 5d8db9c15de96192933e23c13a19fe996896a370 (HEAD -> master)
+Author: Min Jung <dicoqnfkrzl@naver.com>
+Date:   Mon Dec 16 17:20:24 2019 +0900
+
+    add 01_cli.md
+
+commit 000654421782e43cf3b096e24402bbea0fdfdd7c
+Author: Min Jung <dicoqnfkrzl@naver.com>
+Date:   Mon Dec 16 17:15:28 2019 +0900
+
+    first commit
 
 
 ```
