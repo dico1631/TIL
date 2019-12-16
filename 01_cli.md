@@ -7,7 +7,6 @@
 - `ls`  : 디렉토리 내 구성 리스트 출력
 - `pwd`  : print working directory 현재 내 위치 알기
   - 첫 pwd 했을 때 위치가 home directory : /c/users > ~ 이 이 폴더 의미
-
 - `mkdir` [폴더명] : 폴더 생성
 - `cd` [폴더명] : 폴더 변경
 - `cd ..`  :  상위 폴더로 이동
@@ -19,6 +18,10 @@
 - `git status`  : 상태 확인하기
 - `touch` [파일명] : 파일 만들기
 - `rm` [파일명] : 파일 지우기
+- `git remote add`[원격저장소 별명] : 원격저장소 만드는 방법
+  - 보통 첫 원격저장소의 별명은 origin 이라고 함
+- `git remote -v` : 원격 저장소 확인
+- `git push ` [원격저장소 별명] [master] : 원격 저장소에 내 파일들 올리기
 
 ---
 
@@ -27,6 +30,18 @@
 - tab키 : 자동완성, 아래 코드들을 연습할 때 파일명을 다 치지 말고 이 단축키 이용할 것
 
 # git / github 사용법
+
+파일 2개는 typora 라는 파일로 공부 내용 적어둔 파일입니다.
+
+typora로 파일 2개를 만든 후 따라해보세요.
+
+파일명: 
+
+​	1) 00_markdown_basic.md 
+
+​	2) 01_cli.md
+
+### 기본 세팅 및 설명
 
 ```shell
 #은 단순 설명을 위한 주석. 코드가 아님
@@ -211,4 +226,18 @@ Date:   Mon Dec 16 17:15:28 2019 +0900
 
 
 ```
+
+github 사이트에서 new repository 만들기
+
+1. 사이트 우측 상단에 `+` 버튼 누르기  ![image-20191216173901314](01_cli.assets/image-20191216173901314.png)  
+
+2. New Repository
+3. Repository name에 TIL 쓰고 다른 것 변경 없이 create repository
+4. 
+
+```shell
+
+```
+
+
 
