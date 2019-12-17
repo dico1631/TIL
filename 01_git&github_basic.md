@@ -186,6 +186,7 @@ dicoqnfkrzl@naver.com
 
 #성공 화면
 #절대 git commit 하고 엔터치지 말기!!!
+#잘못해서 git commit만 해서 이상한 곳에 들어가면 Exc 버튼 3번 누르고 `:q` 하면 빠져나옴
 student@M15035 MINGW64 ~/TIL (master)
 $ git commit -m "first commit"
 [master (root-commit) 0006544] first commit
