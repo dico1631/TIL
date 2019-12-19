@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        {# 원래 html 주석은 <!--{% 안녕 %}--> 이 모양이지만 진자에서 {%%}는 문법을 보여준다는 의미여서
+        문제가 생김, 주석 모양이 다름, 이 주석은 아예 html에서 없는 것이기에 
+        개발자 모드에서도 안 보임 #}
+        
+        {% for movie in movies%}
+            {% if movie == '조커' %}
+                <li>{{movie}} 정말 재밌어!</li>
+            {% elif movie == '겨울왕국2' %}
+            <li>{{movie}} 올라프 정말 귀여워!!!</li>
+            {% else %}    
+                <li>{{movie}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
