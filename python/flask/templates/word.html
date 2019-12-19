@@ -7,9 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/pong2">
-        <input type="text" name="keyword">
-        <input type="submit">
-    </form>
+    {% for item in menu %}
+    {% print(item.text) %}
+    {% endfor %}
 </body>
 </html>
