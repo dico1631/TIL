@@ -186,7 +186,7 @@ ex. 웹 브라우저에서 사용할 외부 파일들의 링크
   
   이렇게 세팅해두시면 이제 alt + b만 누르면 자동으로 chrome에서 실행됩니다!
   
-  ![image-20191218213126047](02_HTML 코딩하기! ① 태그란 무엇인가.assets/image-20191218213126047.png)
+  ![image-20191218213126047](https://user-images.githubusercontent.com/58927491/71138911-3cbd7a00-2250-11ea-932e-a7d3e148031c.png)
   
   - 실행화면
     
@@ -228,7 +228,7 @@ ex. 웹 브라우저에서 사용할 외부 파일들의 링크
   </html>
 ```
 
-![image-20191218213210572](02_HTML 코딩하기! ① 태그란 무엇인가.assets/image-20191218213210572.png)
+![image-20191218213210572](https://user-images.githubusercontent.com/58927491/71138967-45ae4b80-2250-11ea-9152-f9e57ced2d31.png)
 
 
 
@@ -257,7 +257,7 @@ ex. 웹 브라우저에서 사용할 외부 파일들의 링크
   </body>
   ```
 
-![image-20191218213315262](02_HTML 코딩하기! ① 태그란 무엇인가.assets/image-20191218213315262.png)
+![image-20191218213315262](https://user-images.githubusercontent.com/58927491/71138988-4e9f1d00-2250-11ea-8b5d-a5922a7b7618.png)
 
 노란색으로 표시한 부분을 이전 화면과 비교해보면, 차이가 느껴지실 겁니다.
 
@@ -273,7 +273,7 @@ br 태그는 바로 줄 바꿈 태그입니다.
 <p>나는 <b>[주소]</b>에 살아.<br>우리 집 근처에는 <i>[집주변건물]</i>이 있어.</p>
 ```
 
-  ![image-20191218213600935](02_HTML 코딩하기! ① 태그란 무엇인가.assets/image-20191218213600935.png)
+  ![image-20191218213600935](https://user-images.githubusercontent.com/58927491/71139008-59f24880-2250-11ea-96b7-eaefac3cfd15.png)
 
   b 태그는 태그에 감싸진 부분을 두꺼운 글씨(볼드체)로 만듭니다.
 
@@ -296,7 +296,7 @@ br 태그는 바로 줄 바꿈 태그입니다.
   </body>
   ```
 
-  ![image-20191218214000844](02_HTML 코딩하기! ① 태그란 무엇인가.assets/image-20191218214000844.png)
+  ![image-20191218214000844](https://user-images.githubusercontent.com/58927491/71139025-61b1ed00-2250-11ea-810c-3dd676535adb.png)
 
   실행한 상태에서 HTML이란? 글씨를 누르면 "https://coding-studydiary.tistory.com/2" 주소로 이동하게 된다.
 
@@ -328,7 +328,7 @@ br 태그는 바로 줄 바꿈 태그입니다.
 
   
 
-  ![image-20191218213750976](02_HTML 코딩하기! ① 태그란 무엇인가.assets/image-20191218213750976.png)
+  ![image-20191218213750976](https://user-images.githubusercontent.com/58927491/71139033-68d8fb00-2250-11ea-9404-4dcb2dfb1625.png)
 
   그러면 선택한 사진이 내가 만든 창에 뜨는 것을 볼 수 있다.
 
@@ -451,7 +451,7 @@ html은 markup 언어라는 말 기억나시나요?
   
     - 실행화면 예시
     
-      ![image-20191218212854393](02_HTML 코딩하기! ① 태그란 무엇인가.assets/image-20191218212854393.png)
+      ![image-20191218212854393](https://user-images.githubusercontent.com/58927491/71139052-742c2680-2250-11ea-9386-5f89a0be38c4.png)
 
 
 
