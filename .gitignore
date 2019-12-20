@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/venv,flask,python,windows
-# Edit at https://www.gitignore.io/?templates=venv,flask,python,windows
+# Created by https://www.gitignore.io/api/venv,flask,python,windows,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=venv,flask,python,windows,visualstudiocode
 
 ### Flask ###
 instance/*
@@ -178,6 +178,17 @@ env.bak/
 venv.bak/
 pip-selfcheck.json
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -204,4 +215,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/venv,flask,python,windows
+# End of https://www.gitignore.io/api/venv,flask,python,windows,visualstudiocode
