@@ -5,7 +5,7 @@ import requests
 
 token = config("TELEGRAM_BOT_TOKEN") #내 챗봇의 토큰
 url = "https://api.telegram.org/bot"
-ngrok_url = "https://29bcc43e.ngrok.io" #ngrok 주소
+paw_url = "https://dicoqnfkrzl.pythonanywhere.com/" #ngrok 주소
 
-data = requests.get(f'{url}{token}/setwebhook?url={ngrok_url}/{token}').text
-print(data)
+data = requests.get(f'{url}{token}/setwebhook?url={paw_url}/{token}')
+print(data.text)
