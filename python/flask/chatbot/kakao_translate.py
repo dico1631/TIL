@@ -1,7 +1,9 @@
+from decouple import config
 import requests
+APIKEY = config("APIKEY")
 headers = {
     "Host": "kapi.kakao.com",
-    "Authorization": "KakaoAK 6530bafd222eaff315c35e50bf8cfbd8"  
+    "Authorization": f"KakaoAK {APIKEY}" 
 }
 
 sentence = input("번역할 문장을 넣어주세요: ")
