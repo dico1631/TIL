@@ -42,10 +42,12 @@ def telegram():
     # if flag == 0:
     if text == "안녕":
         return_text = "꺼져"
+
     elif text == "로또":
         texts = ["어쩌피 넌 안될껄?", "굳이?", "도박하냐?ㅋㅋㅋㅋ", "그걸 왜 나한테 물어?", "알면 내가 했지"]
         # numbers = range(1,46)
         return_text = random.sample(texts)[0]
+
     elif text[:3] == "번역:":
         headers = {
             "Host": "kapi.kakao.com",
@@ -54,9 +56,22 @@ def telegram():
 
         sentence = text[3:]
         tlanslate_text = requests.get(f"https://kapi.kakao.com/v1/translation/translate?src_lang=kr&target_lang=en&query={sentence}", headers = headers)
-        print(tlanslate_text.text)
         return_text = tlanslate_text.json()["translated_text"][0][0]
-        print(return_text)
+
+    elif text[:6] == "도로명주소:"
+        headers = {
+        "Host": "dapi.kakao.com",
+        "Authorization": f"KakaoAK {key}"
+        }
+
+        address = text[6:]
+        req = requests.get(f"https://dapi.kakao.com/v2/local/search/address.json?query={address}", headers = headers).text
+        req = json.loads(req)
+        getAddress = req["documents"][0]["road_address"]
+        roadAddress = getAddress["address_name"]
+        return_text = roadAddress
+
+
     else:
         return_text = "뭔소리야? 알아 듣게 말해!"
     requests.get(f'{url}{token}/sendMessage?chat_id={chat_id}&text={return_text}')
