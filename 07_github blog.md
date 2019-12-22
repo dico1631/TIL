@@ -8,7 +8,7 @@
 4. Girhub에서 아래 그림처럼 `[본인아이디].github.io` 이름으로 새 repository 만들기
    - 반드시 repository 이름 지키기!
 
-![image-20191218141157819](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20191218141157819.png) 
+
 
 5. VS code에서 Gitbash 사용하는 법
 
