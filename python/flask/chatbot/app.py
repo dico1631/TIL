@@ -81,7 +81,6 @@ def telegram():
         zone_no = getAddress["zone_no"]
         return_text = zone_no
 
-
     else:
         return_text = "뭔소리야? 알아 듣게 말해!"
     requests.get(f'{url}{token}/sendMessage?chat_id={chat_id}&text={return_text}')
