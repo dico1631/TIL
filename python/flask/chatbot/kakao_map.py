@@ -10,4 +10,6 @@ req = requests.get(f"https://dapi.kakao.com/v2/local/search/address.json?query={
 req = json.loads(req)
 getAddress = req["documents"][0]["road_address"]
 roadAddress = getAddress["address_name"]
+zone_no = getAddress["zone_no"]
 print(f"도로명 주소 : {roadAddress}")
+print(f"우편번호 : {zone_no}")
