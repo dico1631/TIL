@@ -8,9 +8,29 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ThymeleafController {
+	// ModelAttribute면 name 안쓰면 안받음, RequestParam라서 안쓰면 그냥 없음을 보여줌
+	@GetMapping("mode")
+	public String mode(Model model, @RequestParam Map<String, Object> map) {
+		model.addAttribute("name", map.get("name"));
+		model.addAttribute("auth", map.get("auth"));
+		model.addAttribute("category", map.get("category"));
+		return "mode";
+	}
+
+	@GetMapping("pagination")
+	public String pagination(Model model, @RequestParam(defaultValue = "1") int page) {
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 9;
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		return "pagination";
+	}
+
 	@GetMapping("user")
 	public String user(Model model) {
 		Map<String, Object> user = null;
