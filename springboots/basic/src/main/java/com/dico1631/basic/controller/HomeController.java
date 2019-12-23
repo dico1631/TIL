@@ -1,5 +1,4 @@
 package com.dico1631.basic.controller;
-//shift + ctrl + f : 자동정렬
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -8,12 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-
 @Controller
 public class HomeController {
 	//syso는 출력만 되고, 끄면 날라감. 그럼 그 결과로 아무 일도 못해서 이 내용을 파일에 저장하려고 사용
 	//시간에 따라 log를 파일로 저장함. syso보다 빠름
-	Logger log = LoggerFactory.getLogger(this.getClass()); //org.slf4j 쓰기, 공식
+//	Logger logger = LoggerFactory.getLogger(this.getClass()); //org.slf4j 쓰기, 공식
 	
 	@RequestMapping("/")
 	public String home() {

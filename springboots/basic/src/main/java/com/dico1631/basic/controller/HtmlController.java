@@ -31,12 +31,12 @@ public class HtmlController {
 	}
 
 	@GetMapping("html/model_and_view")
-	public ModelAndView htmlModel() {
+	public ModelAndView htmlmodel() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("html/model_and_view");
 		return mav;
 	}
-
+	
 	@GetMapping("html/object")
 	public Member htmlObject() {
 		Member member = new Member();
