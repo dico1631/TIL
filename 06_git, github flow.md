@@ -110,25 +110,15 @@
 
 1. 원하는 코드를 찾으면 "Fork"를 누른다.
 
-![image-20191218131101489](06-1_git flow.assets/image-20191218131101489.png)
-
 2. Fork를 누르면 다른 사람 원격 저장소의 repository 통으로 내 원격 저장소에 복사한다. 그래서 이건 내 원격 저장소이니 push가 된다.
-
-![image-20191218131304132](06-1_git flow.assets/image-20191218131304132.png)
 
  그래서 내 아이디 밑에 주소를 보면 `내 아이디/repository명` 이 되어있다.
 
 3. Fork로 복사한 내 repository 를 clone한다.
-
 4. 바꾸고 싶을 것을 바꾸고 나서 내 꺼에 push한다.
-
 5. "pull request"로 병합 요청을 한다.
 
-   <img src="06-2_github flow.assets/image-20191218132916638.png" alt="image-20191218132916638" style="zoom:150%;" />
 
-   
-
-![image-20191218133016716](06-1_git flow.assets/image-20191218133016716.png) 
 
 - 받는 사람과 보낸 사람 확인
 
