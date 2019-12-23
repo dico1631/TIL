@@ -27,14 +27,14 @@ public class MethodController {
 	}
 
 	
-	//@PutMapping("req/put")
-	@RequestMapping(value = "req/put", method = RequestMethod.PUT)
+	@PutMapping("req/put")
+	//@RequestMapping(value = "req/put", method = RequestMethod.PUT)
 	public String put() {
 		return "PUT";
 	}
 
-	//@DeleteMapping("req/delete")
-	@RequestMapping(value = "req/delete", method = RequestMethod.DELETE)
+	@DeleteMapping("req/delete")
+	//@RequestMapping(value = "req/delete", method = RequestMethod.DELETE)
 	public String delete() {
 		return "DELETE";
 	}
