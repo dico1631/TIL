@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<th:block th:each = "page : ${#numbers.sequence(start, end)}">
+	<span th:if="${page==now_page}" th:text="${page}"></span>
+	
+	<a href = "#" th:unless="${page==now_page}">[[${page}]]</a>
+</th:block>
+</body>
+</html>

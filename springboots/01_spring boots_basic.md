@@ -557,7 +557,7 @@ public String post() {
 // 잘된 예 : https://okky.kr/article/663225  :짧은 주소
 // 안좋은 예 : https://tacademy.skplanet.com/front/tacademy/courseinfo/campus.action?classIndex=1618  :긴 주소
 ```
- 
+
 
 #### 2. put & delete
 
@@ -580,7 +580,7 @@ public String delete() {
 ```
 
 
-### 2)  parameter 보내고 받는 법
+### 2)  서버가 parameter 받는 법
 
 > request 때 같이 보내는 추가 정보 parameter를 보내고 받는 방법
 
@@ -590,10 +590,13 @@ public String delete() {
 - RequestParam (편리함) 
   -  파라미터 명칭에 맞게 변수 사용 
   - 파라미터 종류 및 개수 상관없이 사용 
+  - 각 요소를 따로 적으면 괜찮지만, map 이라고만 썼으면 넣어야 할 요소를 알기가 어렵다.
 - PathVariable - 요청 주소의 경로명 활용
 - ModelAttribute (명확함) 
   - Model / DTO / VO 등 객체와 연계하여 활용 
   -  JPA, MyBatis 등 ORM 프레임워크 활용
+  -  모델 클래스를 만들어서 사용하기에 자동완성 등을 통해서 사용자가 보내는 파라미터의 이름을 알 수 있음
+  -  모델이라는 또 다른 객체를 만들어야함.
 - RequestBody 
   - 보편적인 요청 파라미터 형식을 사용하지 않고 JSON 형태의 파라미터 사용
   - 사용 시 메소드 방식을 POST로 지정

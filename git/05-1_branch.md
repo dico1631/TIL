@@ -427,7 +427,6 @@ C:/Users/student/study/.git/MERGE_MSG [unix] (17:34 17/12/2019)                 
 
 
 
-
 #### 1. Fast-Forward Merge
 
  브랜치 분기가 일어났지만, merge 시점에서 branch 한 쪽에만 commit들이 쌓여 있을 경우
@@ -544,7 +543,6 @@ ed8a737 d.txt
 
 
 <video src="../Desktop/딥러닝 수업자료/002_fast-forward merge.mp4"></video>
-
 
 
 

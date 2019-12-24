@@ -13,6 +13,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ThymeleafController {
 	// ModelAttribute면 name 안쓰면 안받음, RequestParam라서 안쓰면 그냥 없음을 보여줌
+	@GetMapping("linkUrl")
+	public String linkUrl(
+//			@RequestParam int start,
+//			@RequestParam int end,
+			@RequestParam (defaultValue = "1") int now_page,
+			Model model) {
+		int start = (now_page-1) / 10 * 10 + 1;
+		int end = start + 9;
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
+		model.addAttribute("now_page", now_page);
+		
+		return "linkUrl";
+	}
+	
+	
+	
+	
 	@GetMapping("mode")
 	public String mode(Model model, @RequestParam Map<String, Object> map) {
 		model.addAttribute("name", map.get("name"));
