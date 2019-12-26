@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<Input type = "text" id ="translate">
+<!-- <select id = "tr_option">
+	<option value = "">
+</select> -->
+<button>변역</button>
+<hr>
+
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+$('button').click(function(){
+	$.ajax({
+		url : "/getNaver",
+		type : "get",
+		data : {"translate":$("#translate").val()},
+		success : function(res){
+			console.log(res);
+			var message = res.message;
+			var result = message.result;
+			var translatedText = result.translatedText;
+			var html = "<h3>" + translatedText + "</h3>"
+			console.log(html);
+			$('hr').after(html); //hr 태그 다음에 html을 뿌려라
+		}
+	})
+	
+})
+</script>
+
+
+</body>
+</html>

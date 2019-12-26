@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<input type ="text" id = "address">
+<button>위도/경도 변환</button>
+<hr>
+<!-- 자바스크립트 (jquery) AJAX 활용 -->
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<!-- getkakao 주소 호출 -->
+<!-- parsing 후 화면에 출력 -->
+<script>
+	$('button').click(function(){ //버튼을 클릭하면
+		$.ajax({
+			url : "/getKakao",
+			type : "get",
+			data : {"address" : $("#address").val()},
+			success : function(res){
+				console.log(res);
+			}
+		})
+	})
+
+</script>
+</body>
+</html>
