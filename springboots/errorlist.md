@@ -64,3 +64,12 @@ public class BasicApplication {
 ```
 
  : findbyName 함수명의 by가 소문자여서 일어난 에러, By로 써야함
+
+
+
+
+
+![image-20191226162422010](errorlist.assets/image-20191226162422010.png)
+
+: 초기에는 main을 가진 {project명}Application.java 에서 실행해야함
+
