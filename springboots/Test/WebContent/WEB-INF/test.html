@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form>
+	가격 : <input type = "text" name = "price">
+	<br>
+	상품명 : <input type = "text" name = "title">
+	<br>
+	카테고리 : <input type = "text" name = "category">
+	<br>
+	<input type = "button" value = "확인" onclick = "run()">
+</form>
+
+
+<script>
+	function run(){
+		var price = document.querySelector("[name = price]").value;
+		var title = document.querySelector("[name = title]").value;
+		var category = document.querySelector("[name = category]").value;
+		alert(price + title + category);
+	}
+</script>
+</body>
+</html>

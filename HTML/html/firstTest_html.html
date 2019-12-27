@@ -1,0 +1,43 @@
+<!-- [웹 문서 이해 (Html,CSS,JavaScript)]
+고객 정보 관리 시스템 WEB UI 버전
+고객 정보 등록 화면을 HTML5, CSS, Javascript를 이용하여 구현하시오.
+
+고객의 정보는 이름, 성별, 이메일, 출생년도 가 있습니다.​
+​이름은 문자열, 성별은 남자는 M, 여자는 F,​이메일은 문자열, 태어난 연도는 정수​ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <Form>
+        이름: <input type="text" name="name">
+        <br>
+        성별:
+        <select name='sex'>
+            <option value='F'>여자</option>
+            <option value='M'>남자</option>
+        </select>
+        <br>
+        이메일: <input type="email" name="email">
+        <br>
+        생년월일: <input type="date" name="birthday">
+        <br>
+        <input type="button" value="완료" onclick="run()">
+    </Form>
+
+    <script>
+        function run(){
+            var name = document.querySelector("[name=name]").value;
+            var sex = document.querySelector("[name=sex]").value;
+            var email = document.querySelector("[name=email]").value;
+            var birthday = document.querySelector("[name=birthday]").value;
+            alert(name + sex + email + birthday);
+        }
+    </script>
+</body>
+</html>
