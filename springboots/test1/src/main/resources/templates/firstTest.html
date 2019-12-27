@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>essential items : title, description, thumbnails' width/height</p>
+	<button>get video</button>
+	<hr>
+
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		$('button').click(function() {
+			$.ajax({
+				url : "/getVideo",
+				type : "get",
+				data : {},
+				success : function(res) {
+					console.log(res);
+					
+					var items = res.items;
+					for(var i=0; items.length; i++){
+						var snippet = items[i].snippet;
+						var title = snippet.title;
+						var description = snippet.description;
+						var thumbnails = snippet.thumbnails;
+						var default1 = thumbnails.default;
+						var width = default1.width;
+						var height = default1.height;
+						
+						
+						var html1 = "<h1>" + title + "</h1><br>"
+						var html2 = "<h2>" + description + "</h2><br>"
+						var html3 = "<h3>width: " + width + "height: " + height + "</h3><br>"
+						$('hr').after(html1 + html2 + html3);	
+					}
+					
+			}
+		})
+		})
+	</script>
+</body>
+</html>
