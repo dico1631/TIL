@@ -51,10 +51,22 @@
       <p>Some text..</p>
       <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
     </div>
+    <div class="col-sm-3">
+      <button class="btn btn-default" id="write">write</button>
+    </div>
+    
+    <div></div>
   </div>
 </div><br><br>
 
 <footer th:replace="common/footer"></footer>
+
+<script>
+$("#write").click(function(){
+	location = "/board/write";
+	return false;
+});
+</script>
 
 </body>
 </html>
