@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://www.naver.com/" title="네이버로 이동합니다." target="_blank"> 네이버 </a>
+    <!-- table 태그에 border를 넣어 틀의 굵기를 설정합니다. -->
+    <table border="2">
+        <caption>카페 메뉴판</caption>
+        <!-- 1 번째 줄 -->
+        <tr>
+            <th>메뉴명</th>
+            <th>가격</th>
+            <th>커피 여부</th>
+        </tr>
+
+        <!-- 2 번째 줄 -->
+        <tr>
+            <td>아메리카노</td>
+            <td>3000원</td>
+            <td rowspan="2">커피</td>
+        </tr>
+
+        <!-- 3 번째 줄 -->
+        <tr>
+            <td>카페라떼</td>
+            <td>4000원</td>
+            <!-- 셀 병합했기에 이 곳 내용은 지움 -->
+        </tr>
+
+        <!-- 4 번째 줄 -->
+        <tr>
+            <td>핫초코</td>
+            <td>4000원</td>
+            <td rowspan="2">no 커피</td>
+        </tr>
+
+        <!-- 4 번째 줄 -->
+        <tr>
+            <td>유자차</td>
+            <td>4000원</td>
+            <!-- 셀 병합했기에 이 곳 내용은 지움 -->
+        </tr>
+
+        <!-- 5 번째 줄 -->
+        <tr>
+            <td colspan="3">마지막 주문 시간 : 21시</td>
+        </tr>
+    </table>
+</body>
+</html>
