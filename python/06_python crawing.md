@@ -12,7 +12,5 @@
 
 
 
-```
-[<span class="num">20,000</span>, <em class="num">11,900</em>, <span class="num">57</span>]
-```
+- network에서 xhr은 a.jax의 명칭. 이럴 경우엔 driver.implicitly_wait(5) 사용불가
 
