@@ -78,3 +78,42 @@ ON EMP.DEPTO = DEPT.DEPTO;
 # 서브쿼리
 
 - 어느 절에든 쓸 수 있다.
+- 부하가 많이나서 가능하면 JOIN으로 쓰는 게 좋음
+
+
+
+# UPDATE
+
+```sql
+UPDATE 테이블명
+SET 속성 이름1 = 값1, 속성 이름2 = 값2, …, 속성 이름n = 값n;
+[WHERE 조건];
+```
+
+```sql
+UPDATE 제품 SET 제품명 = '통큰파이';
+WHERE 제품명 = '쿵떡파이'; #WHERE 필수! 안쓰면 다 날라감!
+```
+
+```sql
+-- DCL 명령어
+SET @@AUTOCOMMit = 0; #자동 저장을 꺼서 실수하면 되돌리기를 할수 있게 함
+ROLLBACK;  #바로 직전 것만 돌아갈 수 있음
+COMMIT;  #영구저장을 시킴
+```
+
+
+
+# DELETE
+
+```sql
+DELETE
+FROM 테이블명
+[WHERE 조건];
+```
+
+```sql
+DELETE FROM 주문
+WHERE 주문일자 = '2013-05-22';
+```
+
