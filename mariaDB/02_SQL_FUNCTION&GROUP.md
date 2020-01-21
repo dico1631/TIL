@@ -1,4 +1,4 @@
-# 데이터 베이스
+# SQL 함수
 
 ### 1. 함수
 
@@ -34,4 +34,36 @@
 
 - SYSDATE(), NOW() : 현재 일시, 둘이 같음 
 - DATE_FORMAT(날짜, 출력형식) : 날짜 형태의 데이터를 지정하는 형식에 맞춰서 출력
+
+
+
+### 2. 조건문 CASE
+
+```sql
+SELECT 고객아이디, 고객이름, 등급
+ , CASE WHEN 등급='silver' THEN '일반고객'
+        WHEN 등급='gold' THEN '우수고객'
+        WHEN 등급='vip' THEN '최우수고객' END
+FROM 고객;
+```
+
+```sql
+SELECT 고객아이디, 고객이름, 등급
+ , CASE 등급
+     WHEN 'silver' THEN '일반고객'
+     WHEN 'gold' THEN '우수고객'
+     WHEN 'vip' THEN '최우수고객' END
+     -- 만일 그 외 나머지를 쓰려면 END 전에 ELSE 쓰면 됨.
+FROM 고객;
+```
+
+```SQL
+SELECT *,
+IFNULL (COMM, 0),
+CASE DEPTO
+	WHEN 10 THEN '총무'
+	WHEN 20 THEN '운영'
+	ELSE '기타' END
+FROM EMP;
+```
 
