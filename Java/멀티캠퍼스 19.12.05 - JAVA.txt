@@ -1,0 +1,25 @@
+<getter/setter 만들기>
+우클릭 or alt+shift+s > source > generater getter setter > 선택 후 generate
+
+<eclipse 단축키>
+shift + control + 숫자 키패드의 / : 함수 접기
+shift + control + 숫자 키패드의 * : 함수 열기
+shift + alt + A : 한번에 열 편집
+
+
+encoding: 아날로그 신호를 디지털 신호로 변환하는 것
+decoding: 디지털 신호를 아날로그 신호로 변환하는 것
+
+<라이브러리 쓰는 법>
+라이브러리 다운 > 끌어다가 eclipse에 놓기 > JavaStudy 우클릭 > Properties > Java Build Path > Library
+> Add JARs > 선택 후 apply
+
+<자바 라이브러리 다운 받는 사이트>
+https://mvnrepository.com/
+
+<인터넷 단축키>
+F12 : 개발자 도구
+
+input이 문자일지 영상이나 사진일지 모르기때문에 요즘은 거의 Byte Stream만 사용함.
+Input : 나에게로 들어온다
+output : 내가 내보낸다.

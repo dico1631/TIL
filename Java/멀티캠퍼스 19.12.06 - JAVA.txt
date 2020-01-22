@@ -1,0 +1,59 @@
+입출력
+- 네트워크 접속
+컬렉션(List, Set), Map
+예외처리
+JSON 데이터 크롤링
+Thread
+
+<사이트>
+https://www.data.go.kr/ 공공데이터포털
+: openAPI 데이터를 받아야 JSON 데이터로 받아서 실행할 때 마다 업데이트 된 데이터를 받을 수 있음
+
+https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=ko
+: 크롬에서 JSON을 잘 보이게 만들어 주는 프로그램
+
+<파일 입출력>
+1. FileInputStream + read > 한 byte씩 불러옴 > 깨질 수 있고, 느림
+
+2. FileInputStream + byte[] buffer = new byte[1024] > 만든 buffer 배열 크기만큼 가져옴 > 빠르지만 깨질 수 있음
+
+3.FileInputStream + BufferedReader > 깨지는 것을 방지하기 위해 한 줄씩 불러옴(\n을 만날 때 까지)
+단, FileInputStream 는 1byte씩 부르고 BufferedReader는 2byte씩 받아서 호환이 안됨
+> 호환을 도와주는 보조스트림이 필요 : InputStreamReader
+
+
+<Developers.kakao.com>
+RestAPI
+Get : 데이터 가져오기
+Post : 데이터 업로드
+서버에 데이터를 요청할 때 코드: String param = "?query=" + ... > " " 안에 ? 와 = 를 쓴다.
+
+<예외처리>
+1. 예외처리 방법
+    - 라이브러리 사용자 : try-catch문
+    - throw문은 라이브러리 만드는 사람이 사용
+     라이브러리 사용자는 라이브러리 내에 코드는 보지 않는다. 그런데 try-catch문을 쓰면 그 메소드를 사용한 곳에는
+     빨간 줄이 뜨지 않고, try-catch를 통해 자체 해결해버린다. 그래서 라이브러리 사용자는 뭐가 문제인지 알 수가 없다.
+     그런데 throw문을 쓰면 자체 해결을 하지 않고 그 메소드를 사용한 곳에 예외를 던져서 넘겨버린다. 그래서 그 오류가 있는
+     메소드를 사용한 곳에 빨간 줄이 뜨게된다. 사용자의 코드에 빨간줄이 뜨고 사용자는 라이브러리 코드를 보지 않고
+     본인 코드만 보고도 뭐가 문제인지 알 수 있게 된다.
+    - try, catch, finally : try 든 catch 든 아무거나 끝나면 무조건 실행되는 것이 finally
+
+<List>
+LinkedList : 데이터 추가, 삭제가 편리. 느림
+ArrayList < >
+: < >는 "제네릭", 어떤 정보가 들어갈지 모르는 상태에서 데이터를 넣을 수 있는 방법. 배열의 단점을 보완한 것.
+순서대로 똑같은 자료형이 들어간다. 빠름
+
+<Set>
+중복 데이터를 허용하지 않는다. 순서가 없기 때문에 중복 데이터가 있으면 찾을 수가 없기 때문이다.
+get 불가, 하나씩 꺼낼 수 없음. 
+
+<Map>
+key:value 의 1대1 대응
+
+<문자열>
+비교 : equals
+찾기 : indexOF
+바꾸기 : replace
+잘라내기 : substring > 앞뒤로 1개씩 없애는 게 아니라면 항상 indexOF와 붙어다닌다.

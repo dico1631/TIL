@@ -2,7 +2,7 @@
 
 ### 1. 함수
 
-	#### 1) 숫자
+#### 1) 숫자
 
 - ROUND(값, 반올림 지점) : 반올림 
 - TRUNCATE(값, 버림 지점) : 버림 
@@ -38,14 +38,6 @@
 
 
 ### 2. 조건문 CASE
-
-```sql
-SELECT 고객아이디, 고객이름, 등급
- , CASE WHEN 등급='silver' THEN '일반고객'
-        WHEN 등급='gold' THEN '우수고객'
-        WHEN 등급='vip' THEN '최우수고객' END
-FROM 고객;
-```
 
 ```sql
 SELECT 고객아이디, 고객이름, 등급
