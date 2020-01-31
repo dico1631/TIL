@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
+    투표 질문 : <input type="text" name="new_question">
+    <button type="submit">제출</button>
+</form>

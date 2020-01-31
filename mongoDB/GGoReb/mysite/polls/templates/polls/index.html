@@ -1,0 +1,9 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+{% for question in object_Q %}
+    <!-- <a href="/polls/{{ question.id }}"> -->
+    <a href="{% url 'detail' question.id %}">
+        <p>{{ question.question_text }}</p>
+    </a>
+{% endfor %}

@@ -1,0 +1,24 @@
+<h1>{{ question.question_text }}</h1>
+
+<!-- post 방식일 때만 csrf 기능 가능 -->
+<form method="POST" action="{% url 'vote' question.id %}">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all%}
+        <input type="radio" name="choice" value="{{choice.id}}">{{ choice.choice_text }}
+    {% endfor %}
+    <br>
+    <input type="submit" value="vote">
+</form>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    추가 항목 : <input type="text" name="add_option">
+    <button type="submit">제출</button>
+</form>
+
+<button onclick="move()">check the vote result!</button>
+<script>
+    function move(){
+        location = '/polls/{{ question.id }}/results'
+    }
+</script>
