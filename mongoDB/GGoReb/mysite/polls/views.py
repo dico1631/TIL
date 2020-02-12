@@ -28,14 +28,19 @@ def results(request, question_id): # 투표 결과 페이지
     question = Question.objects.get(pk=question_id)
     return render(request, 'polls/results.html', {'question':question})
 
-def vote(request, question_id): # 투표 페이지
-    choice = Choice.objects.get(pk=request.POST['choice'])
-    choice.votes += 1
-    choice.save()
-    return HttpResponse("You're voting on question %s." % question_id)
 
 def free(request):
     return render(request, 'polls/free.html', {})
 
 def ours(request):
     return render(request, 'polls/ours.html', {})
+
+def vote(request, question_id): # 투표 페이지
+    choice = Choice.objects.get(pk=request.POST['choice'])
+    choice.votes += 1
+    choice.save()
+    # 알람 띄우기 방법 1
+    # return HttpResponse('<script>alert("투표했습니다.");history.back();</script>')
+    # 알람 띄우기 방법 2 : ajax를 이용, 투표하는 화면(html)에서 사용
+    # @csrf_expt : ajax 호출 시 주로 사용, csrf 사용하지 않기
+    return HttpResponse('200')

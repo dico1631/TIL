@@ -17,7 +17,24 @@
 </form>
 
 <button onclick="move()">check the vote result!</button>
+
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
+    $('input:submit').click(function(){
+        $.ajax({
+            url: '/polls/{{question.id}}/vote/',
+            type: 'post',
+            data: {
+                'choice': $('[name=choice]').val(),
+                'csrfmiddlewaretoken' : $('[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(res){
+                alert('투표했음');
+            }
+        })
+        return false;
+    });
+
     function move(){
         location = '/polls/{{ question.id }}/results'
     }
