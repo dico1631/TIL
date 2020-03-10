@@ -21,7 +21,7 @@ sum(df$score)   # 합계 산출
 ## ----- 결측치 제거 ---------------------------------- ##
 library(dplyr)                # dplyr 패키지 로드
 df %>% filter(is.na(score))   # score가 NA인 데이터만 출력
-df %>% filter(!is.na(score))  # score 결측치 제거
+df %>% filter(!is.na(score))  # score 결측치 제거하고 출력, 위 아래 같음 
 
 df_nomiss <- df %>% filter(!is.na(score))  # score 결측치 제거
 mean(df_nomiss$score)                      # score 평균 산출
@@ -67,6 +67,7 @@ mean(exam$math, na.rm = T) # 결측치 제외하고 math 평균 산출
 
 navec <- exam$math
 imput <- mean(exam$math, na.rm = T)
+imput
 
 exam$math <- ifelse(is.na(exam$math), imput, exam$math)  # math가 NA면 55로 대체
 
@@ -80,6 +81,70 @@ mean(exam$math)
 
 ### Quiz p170 실습하기 ###
 
+mpg <- as.data.frame(ggplot2::mpg)
+mpg[c(65,124,131,153,212), "hwy"] <- NA
+
+# 1번
+table(is.na(mpg$drv))
+table(is.na(mpg$hwy))
+
+# 2번
+mpg %>%
+  select(drv, hwy) %>%
+  filter(!is.na(hwy)) %>%
+  group_by(drv) %>%
+  summarise(mean_hwy = mean(hwy)) %>%
+  arrange(desc(mean_hwy))
+
+
+### Quiz 추가 ####
+# 결측치가 들어있는 mpg 데이터를 활용해서 문제를 해결해보세요.
+mpg <- as.data.frame(ggplot2::mpg)
+rowna <- c(1, 8, 27, 89, 101, 73, 189, 211)
+colna <- c(7, 9)
+rowna
+colna
+nas <- cbind(rowna, colna)
+nas
+mpg[nas] <- NA
+
+# • Q1. drv(구동방식)별로 hwy(고속도로 연비) 평균이 어떻게 다른지 알아보자.
+## - 분석을 하기 전에 우선 두 변수에 결측치가 있는지 확인하자.
+is.na(mpg$drv)
+is.na(mpg$hwy)
+
+## - drv 변수와 hwy 변수에 결측치가 몇 개 있는지 알아보세요.
+table(is.na(mpg$drv))
+table(is.na(mpg$hwy))
+
+
+# • Q2. filter()를 이용해 hwy 변수의 결측치를 제외하고,
+## - 어떤 구동방식의 hwy 평균이 높은지 알아보세요.
+## - 하나의 dplyr 구문으로 만들어야 합니다.
+mean_hwy = mpg %>%
+  filter(!is.na(hwy)) %>%
+  group_by(drv) %>%
+  summarise(hwy_mean = mean(hwy)) %>% 
+  arrange(hwy_mean)
+
+# • Q3. drv 그룹별 hwy의 평균으로 결측치를 대체하고자 한다면?
+input_drv <- 0
+filtered_mpg <- mpg %>%
+  select(drv, hwy) %>%
+  filter(drv == input_drv)
+
+means <- function(input_drv){
+    notna_mean = mean(filtered_mpg$hwy, na.rm = T)
+    return(notna_mean)
+}
+
+mpg$hwy <- ifelse(is.na(mpg$hwy), means(mpg$drv), mpg$hwy)
+
+table(is.na(mpg$hwy))
+
+# 발전형
+left_join(mpg, mean_hwy, by = "drv") %>%
+  mutate(muhwy = ifelse(is.na(hwy), mean_hwy, hwy))
 
 #### 07-2 이상치 정재하기 ####
 
