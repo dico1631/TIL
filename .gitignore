@@ -216,3 +216,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/venv,flask,python,windows,visualstudiocode
+.Rproj.user

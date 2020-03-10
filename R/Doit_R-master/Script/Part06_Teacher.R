@@ -3,7 +3,7 @@
 
 ## -------------------------------------------------------------------- ##
 library(dplyr)
-exam <- read.csv("Data/csv_exam.csv")
+exam <- read.csv("C:/Users/student/Desktop/TIL/R/Doit_R-master/Data/csv_exam.csv")
 exam
 
 # redirection의 이해. git command 사용.
@@ -40,10 +40,10 @@ exam %>% filter(class %in% c(3, 1))
 ## -------------------------------------------------------------------- ##
 # 수학 점수가 50점을 초과한 경우
 math50 <- exam %>% filter(math > 50) # row index도 초기화한다.
-
+math50
 math50 <- exam[exam$math > 50, ]
 rownames(math50) <- 1:dim(math50)[1]
-
+rownames(math50)
 # 수학 점수가 50점 미만인 경우
 exam %>% filter(math < 50)
 
@@ -106,9 +106,15 @@ max_eng <- max(filt_stu$english)
 filt_stu %>% filter(english == max_eng) %>%
   select(id)
 
+# 간소화
+exam %>% filter(class != 3) %>%
+  filter(science >= 50 & science <= 80) %>%
+  select(id, english) %>%
+  filter(english == max(english))
 
 ## [참고] 이제 이것을 함수로 만들어보자. 
 ## - 조건문장을 r code로 변환하는 것이 중요하다.
+#parse : 문자열을 코드로 변경, 실행 X / eval : 코드를 실행시킴
 parse(text="class != 3")
 eval(parse(text="2+3"))
 eval(parse(text="exam$class"))
@@ -187,6 +193,31 @@ mean(class2$math)                      # 2반 수학 점수 평균 구하기
 
 ### Quiz 실습하기 ###
 
+# 1번
+mpg<-ggplot2::mpg
+str(mpg)
+displ.4 <- mpg %>% filter(displ <= 4)
+mean(displ.4$hwy)
+
+displ.5 <- mpg %>% filter(displ >= 5)
+mean(displ.5$hwy)
+
+# 2번
+mpg.select <- mpg %>% select(manufacturer, cty) 
+mpg.select.audi <- mpg.select %>% filter(manufacturer == "audi")
+mpg.select.toyota <- mpg.select %>% filter(manufacturer == "toyota")
+mean(mpg.select.audi$cty)
+mean(mpg.select.toyota$cty)
+
+#3번
+mpg.three <- mpg %>% 
+  select(manufacturer, hwy) %>% 
+  filter(manufacturer %in% c("chevrolet", "ford", "honda"))
+mean(mpg.three$hwy)
+
+
+
+
 #### 06-3 필요한 변수만 추출 ####
 
 ## -------------------------------------------------------------------- ##
@@ -240,6 +271,32 @@ r45
 
 ### Quiz 실습하기 ###
 
+# 1번
+mpg.select <- mpg %>% select(class, cty)
+
+#2번
+mpg.select %>% 
+  filter(class %in% c("suv", "compact")) %>%
+  group_by(class)
+
+##문제 : 각 반별로 science의 최고점과 최저점인 학생 id를 구하라.
+install.packages("readxl")
+library(readxl)
+df_exam <- read_excel("C:/Users/student/Desktop/TIL/R/Doit_R-master/Data/excel_exam.xlsx")
+df_exam.answer1 <- df_exam %>% 
+  select(id, class, science) %>%
+  group_by(class) %>%
+  filter(science == max(science) | science == min(science))
+df_exam.answer1
+
+# 발전형
+df_exam.answer2 <- df_exam %>% 
+  select(id, class, science) %>%
+  group_by(class) %>%
+  summarise(minId = id[which.min(science)],
+            maxId = id[which.min(science)])
+df_exam.answer2
+
 #### 06-4 순서대로 정렬하기 ####
 
 ## -------------------------------------------------------------------- ##
@@ -249,21 +306,36 @@ exam %>% arrange(desc(math))   # math 내림차순 정렬
 exam %>% arrange(class, math)  # class 및 math 오름차순 정렬
 a <- exam %>% arrange(class, desc(math))
 b <- exam %>% arrange(desc(math)) %>% arrange(class)
-all(a==b)
+all(a==b)  # 순서까지 다 같아야함
 c <- c(1, 2, 3); d <- c(1, 5, 7, 8)
 all(c==d)
 any(c==d)
 
-sort(exam$math)
-math_idx<-sort(exam$math, index.return=T)$ix
-math_idx2<-order(exam$math)
-all(math_idx == math_idx2)
+sort(exam$math)  # 해당 변수값을 정렬해서 보여줌
+arrange(exam, math) # 해당 요소에 대해 dataframe 자체를 정렬
 
-exam[math_idx,]
-exam[order(exam$math),]
+sort(exam$math, index.return=T)  # 각각의 인덱스도 알려줌
+math_idx<-sort(exam$math, index.return=T)$ix  # 인덱스가 담긴 곳이 ix, 인덱스 요소만 추출
+math_idx
+
+math_idx2<-order(exam$math)  # 정렬 후 인덱스를 보여주는 함수
+math_idx2
+all(math_idx == math_idx2)  # 1과 2 방법 결과가 같음
+
+# 아래 3개는 같은 내용이다.
 exam %>% arrange(math)
+exam[math_idx,]  # 위의 인덱스 행만 추출
+exam[order(exam$math),]  # 위 문장과 같음
+
 
 ### Quiz 실습하기 ###
+
+# 1번
+mpg %>% 
+  select(manufacturer, model, hwy) %>%
+  filter(manufacturer == "audi") %>%
+  arrange(hwy) %>%
+  head(5)
 
 
 #### 06-5 파생변수 추가하기 ####
@@ -277,6 +349,8 @@ exam_new <- exam %>%
   mutate(total = math + english + science,         # 총합 변수 추가
          mean = (math + english + science)/3)      # 일부 추출
 
+exam_new
+
 exam %>%
   mutate(test = ifelse(science >= 60, "pass", "fail")) %>%
   head
@@ -287,6 +361,23 @@ exam %>%
   head                                          # 일부 추출
 
 ### Quiz 실습하기 ###
+# 1번
+mpg <- mpg %>% select(model, year, cty, hwy) %>% mutate(total = cty + hwy)
+mpg
+
+# 2번
+mpg = mpg %>% mutate(means = total/2)
+
+# 3번
+mpg %>% arrange(desc(means)) %>% head(3)
+
+# 4번
+mpg <- ggplot2::mpg
+mpg %>%  
+  select(model, year, cty, hwy) %>% 
+  mutate(total = cty + hwy, means = total/2) %>%
+  arrange(desc(means)) %>%
+  head(3)
 
 
 #### 06-6 집단별 요약하기 ####
@@ -303,6 +394,7 @@ str(group_by(exam, class))
 mean_math <- exam %>% 
   group_by(class) %>%                   # class별로 분리
   summarise(mean(math))     # math 평균 산출
+mean_math
 
 exam %>% 
   group_by(class) %>%                   # class별로 분리
@@ -320,12 +412,12 @@ mpg %>%
   head(10)                              # 일부 출력
 
 exam %>% distinct(class)
+exam %>% union(class) # 에러
 
 ## ----- dplyr 조합하기 --------------------------------- ##
 # - 문제) 회사별로 
 # - “suv” 자동차의 도시 및 고속도로 통합 연비 평균을 구해 
 # - 내림차순으로 정렬하고, 1~5위까지 출력하기
-
 mpg %>%
   group_by(manufacturer) %>%           # 회사별로 분리
   filter(class == "suv") %>%           # suv 추출
@@ -343,7 +435,8 @@ mpg %>% filter(class == 'suv') %>%
   arrange(desc(mean_tot)) %>%          # 내림차순 정렬
   head(5)
 
-
+mpg
+mpg$class
 table(mpg$class)
 
 mpg %>% group_by(class) %>%
@@ -354,12 +447,31 @@ mpg %>% group_by(class) %>%
 
 ### Quiz 실습하기 ###
 
+# 1번, 2번
+mpg %>%
+  group_by(class) %>%
+  summarise(mean_cty = mean(cty)) %>%
+  arrange(desc(mean_cty))
 
-#### 06-7 데어터 합치기 ####
+# 3번
+str(mpg)
+mpg %>%
+  group_by(manufacturer) %>%
+  summarise(mean_hwy = mean(hwy)) %>%
+  arrange(desc(mean_hwy)) %>%
+  head(3)
+
+# 4번
+mpg %>%
+  filter(class == "compact") %>%
+  group_by(manufacturer) %>%
+  summarise(compact_num = n())
+
+#### 06-7 데이터 합치기 ####
 
 ## -------------------------------------------------------------------- ##
 # 중간고사 데이터 생성
-test1 <- data.frame(id = c(1, 2, 3, 4, 5),           
+test1 <- data.frame(id = c(1, 2, 3, 7, 8),           
                     midterm = c(60, 80, 70, 90, 85))
 
 # 기말고사 데이터 생성
@@ -370,6 +482,7 @@ test1  # test1 출력
 test2  # test2 출력
 
 total <- left_join(test1, test2, by = "id")  # id 기준으로 합쳐서 total에 할당
+total <- left_join(test2, test1, by = "id")
 total                                        # total 출력
 
 data.frame(mt=test1$midterm, fn=test2$final)
@@ -381,12 +494,18 @@ name <- data.frame(class = c(1, 2, 3, 4, 5),
                    teacher = c("kim", "lee", "park", "choi", "jung"))
 name
 name2 <- rbind(name, name)
+name2
 
+exam
+name
 exam_new <- left_join(exam, name, by = "class")
 exam_new
 
-exam_new <- left_join(exam, name2, by = "class")
+exam_new <- left_join(exam, name2, by = "class") # 중복도 다 나온다. 중복 제거 안됨
 exam_new
+
+duplicated(name2)  # 각 행의 중복여부 알려줌
+name2[duplicated(name2),] # name2에서 중복 제거
 
 
 
@@ -409,9 +528,26 @@ rbind(group_a, group_b)
 
 # cbind, rbind, merge
 # dplyr 패키지의 bind_cols, bind_rows, inner_join, left_join, ...
+# cbind보다는 left_join이 느림/ bind_rows보다는 rbind가 느림
+# merge = join, 근데 join이 더 빠름
 example(merge)
 
 ### Quiz 실습하기 ###
+#혼자서 해보기
+fuel <- data.frame(fl = c("c", "d", "e", "p", "r"),
+                   price_fl = c(2.35, 2.38, 2.11, 2.76, 2.22),
+                   stringsAsFactors = F)
+str(fuel)
+
+# 1번
+str(mpg)
+mpg <- left_join(mpg, fuel, by = "fl")
+str(mpg)
+
+# 2번
+mpg %>% select(model, fl, price_fl) %>% head(5)
+
+
 
 
 ## ----- 6장 정리하기 ------------------------------- ##
@@ -475,3 +611,30 @@ total <- left_join(test1, test2, by = "id")
 # 세로로 합치기
 group_all <- bind_rows(group_a, group_b)
 
+##---------분석도전!----------
+midwest <- ggplot2::midwest
+str(midwest)
+
+# 1번
+midwest <- midwest %>% 
+  mutate(child_rate = (poptotal - popadults)/poptotal * 100)
+
+# 2번
+midwest %>%
+  arrange(desc(child_rate)) %>%
+  head(5)
+
+# 3번
+midwest %>%
+  mutate(child_category = ifelse(child_rate >= 40, "large",
+                                 ifelse(child_rate >= 30, "middle", "small"))) %>%
+  group_by(child_category) %>%
+  summarise(childrate_count = n())
+
+# 4번
+midwest %>%
+  select(popasian, poptotal, state, county) %>%
+  mutate(asian_rate = popasian / poptotal * 100) %>%
+  arrange(asian_rate) %>%
+  select(state, county, asian_rate) %>%
+  head(10)
