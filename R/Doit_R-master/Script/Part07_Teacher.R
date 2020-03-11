@@ -179,7 +179,9 @@ hwyStats <- boxplot(mpg$hwy)$stats
 
 # 12~37 벗어나면 NA 할당
 ## - 독립변수가 아니라면, 이렇게 수행하면 절대 않된다.
+# > 다른 요소에 영향을 받는 것은 그것의 값만 보고 이상치인지 여부를 판단하면 안된다.
 ## - 주성분으로 변경한 후에 아웃라이어를 식별하여 제거해야한다.
+# 주성분 변경 : 모든 변수를 독립변수로 바꾸는 것
 
 mpg$hwy <- ifelse(mpg$hwy < 12 | mpg$hwy > 37, NA, mpg$hwy)
 mpg$hwy <- ifelse(mpg$hwy < hwyStats[1] | 
@@ -196,7 +198,35 @@ x <- c(1:8, 10)
 y <- x**3
 boxplot(x)
 boxplot(y)
+
+
 ### Quiz p178 실습하기 ###
+mpg <- as.data.frame(ggplot2::mpg)
+mpg[c(10,14,58,93), "drv"] <- "k"
+mpg[c(29,43,129,203), "cty"] <- c(3,4,39,42)
+
+# 1번
+mpg %>%
+  select(drv) %>%
+  group_by(drv) %>%
+  summarise(num = n())
+
+mpg$drv <- ifelse(mpg$drv == "k", NA, mpg$drv)
+
+table(is.na(mpg$drv))
+
+# 2번
+boxplot(mpg$cty)
+boxplot(mpg$cty)$stats
+mpg$cty <- ifelse(mpg$cty > 26 | mpg$cty < 9, NA, mpg$cty)
+table(is.na(mpg$cty))
+
+# 3번
+mpg %>%
+  select(drv, cty) %>%
+  filter(!is.na(drv) & !is.na(mpg$cty)) %>%
+  group_by(drv) %>%
+  summarise(cty_mean = mean(cty))
 
 
 ## ------------ summary -------------- ##
@@ -214,6 +244,10 @@ df_nomiss <- df %>% filter(!is.na(score) & !is.na(sex))
 # 함수의 결측치 제외 기능 이용하기
 mean(df$score, na.rm = T)
 exam %>% summarise(mean_math = mean(math, na.rm = T))
+
+exam %>% group_by(class) %>%
+  summarise(mean_math = mean(math))
+
 
 
 ## 2.이상치 정제하기
