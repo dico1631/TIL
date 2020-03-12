@@ -326,8 +326,7 @@ table(welfare$code_job, useNA="ifany")
 
 ### - 직업분류코드 목록 불러오기. 
 library(readxl)
-list_job <- read_excel("Data/Koweps_Codebook.xlsx", 
-                       col_names = T, sheet = 2)
+list_job <- read_excel("C:/Users/student/Desktop/TIL/R/Doit_R-master/Data/Koweps_Codebook.xlsx", col_names = T, sheet = 2)
 head(list_job)
 dim(list_job)
 
@@ -419,24 +418,74 @@ ggplot(data = job_female, aes(x = reorder(job, n), y = n)) +
 
 #---- Quiz: 연령 등급에서 노년층(ageg = old)을 제외하고 분석하면:
 # 1. 노년층 제외 남성 직업 빈도 상위 10개 추출
-
+male_young_job <- welfare %>% 
+  filter(ageg != "old", sex == "male", !is.na(job)) %>%
+  group_by(job) %>%
+  summarise(male_young = n()) %>%
+  arrange(desc(male_young)) %>%
+  head(10)
+male_young_job
 
 # 2. 노년층 제외 여성 직업 빈도 상위 10개 추출
-
+female_young_job <- welfare %>% 
+  filter(ageg != "old", sex == "female", !is.na(job)) %>%
+  group_by(job) %>%
+  summarise(female_young = n()) %>%
+  arrange(desc(female_young)) %>%
+  head(10)
+female_young_job
 
 # 3. 노년층 제외 남성 직업 빈도 상위 10개 직업 그래프
+ggplot(male_young_job, aes(x = reorder(job, male_young), male_young)) + geom_col() + coord_flip()
 
 
 # 4. 노년층 제외 여성 직업 빈도 상위 10개 직업 그래프 
-
+ggplot(female_young_job, aes(x = reorder(job, female_young), female_young)) + geom_col() + coord_flip()
 
 
 # Quiz: 직업 빈도 상위 10개에 대한 남녀 비율
+library(reshape2)
+welfare %>%
+  filter(!is.na(job)) %>%
+  group_by(job, sex) %>%
+  summarise(job_count = n()) %>%
+  dcast(job ~ sex, sum) %>%
+  mutate(person = female + male) %>%
+  mutate(female = female/person, male = male/person) %>%
+  arrange(desc(person)) %>%
+  head(10)
 
+install.packages('tidyr')
+library(tidyr)
+welfare %>%
+  filter(!is.na(job)) %>%
+  group_by(job, sex) %>%
+  summarise(job_count = n()) %>%
+  spread(sex, job_count) %>%
+  mutate(person = female + male) %>%
+  mutate(female = female/person, male = male/person) %>%
+  arrange(desc(person)) %>%
+  head(10)
 
 
 # Quiz : 월급 상위 30개 직업에 대한 남녀 비율\
-
+# welfare %>%
+#   filter(!is.na(job)) %>%
+#   group_by(job) %>%
+#   summarise(mean_job = mean(income, na.rm = T)) %>%
+#   dcast(job ~ sex, sum) %>%
+#   group_by(job) %>%
+#   mutate(sex_rate = n/sum(n)) %>%
+#   arrange(desc(income_mean)) %>%
+#   head(30)
+# 
+# jobFMratio <- welfare %>%
+#   filter(!is.na(job)) %>%
+#   group_by(job, sex)
+#   summarise(n = n()) %>%
+#   spread(sex, n, fill = 0) %>%
+#   
+# top30job <- inner_join()
 
 
 #### 09-8 종교 유무에 따른 이혼율 ####
@@ -461,6 +510,7 @@ table(welfare$marriage, useNA = "ifany")
 welfare$group_marriage <- ifelse(welfare$marriage == 1, "marriage",
                                  ifelse(welfare$marriage == 3, "divorce", NA))
 
+table(welfare$group_marriage, useNA = 'ifany')
 table(welfare$group_marriage)
 table(is.na(welfare$group_marriage))
 qplot(welfare$group_marriage)
@@ -641,3 +691,4 @@ ggplot(data = list_order_old, aes(x = region,  y = pct, fill = ageg)) +
 # - 각 직업코드의 첫 digit을 직업종으로 하자.
 # - 1 ~ 10까지의 직업종에 대해 지역별 비율을 구한다.
 # - 7대 지역을 x축으로 직업종의 비율을 y축으로 bar 챠트를 작성한다.
+# summarise(n = n()) == tally()
