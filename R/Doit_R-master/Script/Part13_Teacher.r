@@ -42,11 +42,15 @@ skewness(y)
 set.seed(123)
 
 ## 분포함수 : norm에 대해
+# dnorm : 정규 확률 밀도 함수
 # dnorm(x, mean = 0, sd = 1, log = FALSE): density
+# pnorm : 누적 밀도 함수
 # pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE): probablilty
 ## - lower.tail = T: return P(x<q)    |   lower.tail = F: return P(x>q)
 ## - log.p = F: return Prob           |   log.p = T: return log(Prob)
+# qnorm : 
 # qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE): quantile
+# rnorm : 정규확률분포로 랜덤 숫자 생성
 # rnorm(n, mean = 0, sd = 1): random generation n samples
 
 # 평균이 0이고 표준편차가 10인 정규분포에서 100개의 난수 생성.
@@ -70,6 +74,11 @@ pnorm(2) - pnorm(-2)
 
 pnorm(3) - pnorm(-3)
 pnorm(6) - pnorm(-6)
+
+qnorm(pnorm(6))
+qnorm(0.96)
+pnorm(1.75)
+pnorm(qnorm(0.96))
 
 ##- 소수점 k 자리까지의 정밀도를 1  ~ 22까지 표현가능하다. 기본값은 7.
 specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
@@ -129,6 +138,14 @@ ppois(5, 1)
 # - 6C3 (1/2)^6
 6*5*4/(3*2)*(0.5^6)
 dbinom(3, 6, 0.5)
+
+# 채널이 50이하일 확률
+sum = 0
+for(i in 0:3){
+  sum = sum + dbinom(i, 6, 0.5)
+}
+sum
+pbinom(3, 6, 0.5)
 
 
 ## 2.1 기초통계량

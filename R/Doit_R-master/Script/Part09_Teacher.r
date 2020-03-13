@@ -12,7 +12,6 @@ install.packages("foreign")  # foreign 패키지 설치
 
 library(foreign)             # SPSS 파일 로드
 library(dplyr)               # 전처리
-library(ggplot2)             # 시각화
 library(readxl)              # 엑셀 파일 불러오기
 
 # download : http://bit.ly/Koweps_hpc10_2015_v2
@@ -29,6 +28,11 @@ View(welfare[1:3,])
 dim(welfare) # 16664 957
 str(welfare)
 summary(welfare)
+
+welfare1 <- welfare %>% select(birth, marriage) %>% head(6)
+welfare1
+str(welfare1)
+summary(welfare1)
 
 # p211. 직종코드집 참고하기: Data/Koweps_Codebook.xlsx
 welfare <- rename(welfare,
