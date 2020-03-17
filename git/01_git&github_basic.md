@@ -20,7 +20,7 @@
 - `git status`  : 상태 확인하기
 - `touch` [파일명] : 파일 만들기
 - `rm` [파일명] : 파일 지우기
-- `git remote add`[원격저장소 별명] : 원격저장소 만드는 방법
+- `git remote add`[원격저장소 별명] [복사한 github의 repository 주소] : 원격저장소 만드는 방법
   - 보통 첫 원격저장소의 별명은 origin 이라고 함
 - `git remote -v` : 원격 저장소 확인
 - `git push ` [원격저장소 별명] [master] : 원격 저장소에 내 파일들 올리기
